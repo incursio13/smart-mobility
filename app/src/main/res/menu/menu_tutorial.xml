@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="id.ac.its.ezlyn.activity.new_tab">
+    <item
+        android:id="@+id/tutorial"
+        android:orderInCategory="100"
+        android:title="Tutorial"
+        app:showAsAction="always" />
+</menu>

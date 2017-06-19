@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1014025197259",
+    "firebase_url": "https://smartmobility-c09ea.firebaseio.com",
+    "project_id": "smartmobility-c09ea",
+    "storage_bucket": "smartmobility-c09ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014025197259:android:5dd34ace7fddb427",
+        "android_client_info": {
+          "package_name": "id.ac.its.smartmobility"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014025197259-3oflqrshiggvu387a5v0b58i6pmkr7mq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.its.smartmobility",
+            "certificate_hash": "0b43ba99e1a936e7f2e29d95190272a93b83418b"
+          }
+        },
+        {
+          "client_id": "1014025197259-9nrvqha39n63ncs1vc6gaooj5a51pd7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArNAuq2x2PV2nHusBIdn4ho8hciRlW4VQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014025197259-9nrvqha39n63ncs1vc6gaooj5a51pd7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="id.ac.its.smartmobility.activity.MapsActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_scrollFlags="scroll|enterAlways"
+        >
+
+        <TextView
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/colorPrimaryText"
+            android:textStyle="bold"
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Halte terdekat" />
+
+    </android.support.v7.widget.Toolbar>
+    <fragment
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        map:cameraZoom="15"
+        map:mapType="normal"
+        map:uiCompass="false"
+        map:uiMapToolbar="false"
+        map:uiRotateGestures="true"
+        map:uiScrollGestures="true"
+        map:uiZoomControls="false"
+        map:uiZoomGestures="true" />
+
+    <Button
+        android:id="@+id/konfirmasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:text="Konfirmasi menunggu"
+        android:visibility="gone" />
+
+    android:text="Tutorial"
+
+</RelativeLayout>
