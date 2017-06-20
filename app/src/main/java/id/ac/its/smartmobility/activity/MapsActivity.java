@@ -413,11 +413,8 @@ public class MapsActivity extends AppCompatActivity implements
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         int waiting = dataSnapshot.getValue(Halte.class).getWaiting();
-                        Log.d("waiting", "onDataChange: "+waiting);
                         waiting = waiting + 1;
-                        Log.d("waiting", "onDataChange: "+waiting);
                         databaseHalte.child(halte.getName()).child("waiting").setValue(waiting);
-                        Log.d("waiting", "onDataChange: "+halte.getName());
                     }
 
                     @Override

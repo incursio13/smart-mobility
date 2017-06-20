@@ -45,6 +45,7 @@
         </activity>
         <activity android:name=".activity.MapsActivity"></activity>
         <activity android:name=".activity.RegistrationActivity"></activity>
+        <activity android:name=".activity.Navigation" />
     </application>
 
 </manifest>

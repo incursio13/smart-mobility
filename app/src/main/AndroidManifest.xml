@@ -41,6 +41,7 @@
         <activity android:name=".activity.LynListActivity" />
         <activity android:name=".tutorial_new" />
         <activity android:name=".TutorialActivity" />
+        <activity android:name=".activity.Navigation" />
     </application>
 
 </manifest>
