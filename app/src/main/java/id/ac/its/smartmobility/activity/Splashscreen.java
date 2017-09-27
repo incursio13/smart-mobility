@@ -178,7 +178,7 @@ public class Splashscreen extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(Splashscreen.this, MapsActivity.class);
+                        Intent i = new Intent(Splashscreen.this, MenuActivity.class);
                         startActivity(i);
                         finish();
                     }

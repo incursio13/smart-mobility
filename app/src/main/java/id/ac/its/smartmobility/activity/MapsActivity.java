@@ -354,7 +354,9 @@ public class MapsActivity extends AppCompatActivity implements
                 nama = (TextView) v.findViewById(R.id.nama);
                 jarak = (TextView) v.findViewById(R.id.jarak);
                 jumlah = (TextView) v.findViewById(R.id.jumlah);
+
                 nama.setText(marker.getTitle());
+
                 for (Halte h : haltes) {
                     if (h.getName().contentEquals(marker.getTitle())) {
                         final int index = getIndex(h);
@@ -550,6 +552,7 @@ public class MapsActivity extends AppCompatActivity implements
                         markerOptions.position(halteloc);
                         builder.include(halteloc);
                         markerOptions.title(halte.getName());
+                        Log.d("halte", "onDataChange: "+halte.getName());
                         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_halte));
                         mGoogleMap.addMarker(markerOptions);
                         GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))

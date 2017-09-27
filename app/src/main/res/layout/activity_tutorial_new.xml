@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="id.ac.its.ezlyn.tutorial_new">
+    tools:context="id.ac.its.smartmobility.tutorial_new">
 
     <ImageSwitcher
         android:layout_width="wrap_content"
@@ -20,6 +20,7 @@
 
     <Button
         android:text="Sebelumnya"
+        android:textColor="@color/colorPrimaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/previous"
@@ -32,6 +33,7 @@
 
     <Button
         android:text="Selanjutnya"
+        android:textColor="@color/colorPrimaryText"
         android:layout_height="wrap_content"
         android:id="@+id/next"
         android:elevation="0dp"

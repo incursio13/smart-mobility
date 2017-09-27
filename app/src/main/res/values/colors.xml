@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryLight2">#99ccff</color>
+    <color name="colorPrimaryYellow">#f1da0e</color>
+    <color name="colorPrimaryYellowLight">#f9f09f</color>
+    <color name="colorPrimaryGrey">#666351</color>
+    <color name="colorPrimaryGreyLight">#d2d0c6</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryLight">#FFF9C4</color>
-    <color name="colorPrimaryText">#212121</color>
+    <color name="colorPrimaryText">#e5e5e5</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorIcons">#212121</color>
     <color name="colorDivider">#BDBDBD</color>
+
     <color name="textLynO">#dd2c00</color>
-    <color name="textLynWk">#4dd0e1</color>
-    <color name="textLynS">#ffeb3b</color>
     <color name="backgroundLynO">#ffea00</color>
+
+    <color name="textLynWk">#4dd0e1</color>
     <color name="backgroundLynWk">#ffea00</color>
+
+    <color name="textLynS">#ffeb3b</color>
     <color name="backgroundLynS">#1a237e</color>
 </resources>

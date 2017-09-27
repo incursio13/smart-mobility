@@ -43,6 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.Menu"></activity>
         <activity android:name=".activity.MapsActivity"></activity>
         <activity android:name=".activity.RegistrationActivity"></activity>
         <activity android:name=".activity.Navigation" />

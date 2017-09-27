@@ -162,7 +162,7 @@ public class MapsActivity extends AppCompatActivity implements
     CardView cardhalte;
     @BindView(R.id.penuh)
     Button penuh;
-    @BindView(R.id.navigasi) Button navigasi;
+//    @BindView(R.id.navigasi) Button navigasi;
     ProgressDialog progressDialog,cover;
     int checked=0;
     String distemp;
@@ -281,7 +281,7 @@ public class MapsActivity extends AppCompatActivity implements
     }
 
 
-    @OnClick({R.id.penuh,R.id.kerja, R.id.navigasi})
+    @OnClick({R.id.penuh,R.id.kerja})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.kerja:
@@ -337,24 +337,6 @@ public class MapsActivity extends AppCompatActivity implements
                         }
                     }, 2000);
                 }
-                break;
-            case R.id.navigasi:
-                final ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setMessage("Loading");
-                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progressDialog.setCancelable(false);
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialog.dismiss();
-                        Intent intent = new Intent(MapsActivity.this, Navigation.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }, 2000);
-
                 break;
         }
     }
@@ -660,5 +642,23 @@ public class MapsActivity extends AppCompatActivity implements
             }
         }
         return index;
+    }
+
+    public void onBackPressed(){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+                Intent intent = new Intent(MapsActivity.this, id.ac.its.driver.activity.Menu.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 2000);
     }
 }

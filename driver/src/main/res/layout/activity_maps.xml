@@ -139,19 +139,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
+        android:textColor="@color/colorPrimaryText"
         android:background="@color/colorPrimary"
         android:text=""/>
 
-    <Button
-        android:id="@+id/navigasi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toEndOf="@+id/cardhalte"
-        android:layout_toRightOf="@+id/cardhalte"
-        android:text="Navigasi" />
+    <!--<Button-->
+        <!--android:id="@+id/navigasi"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/toolbar"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginStart="10dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:layout_toEndOf="@+id/cardhalte"-->
+        <!--android:layout_toRightOf="@+id/cardhalte"-->
+        <!--android:text="Navigasi" />-->
 
 </RelativeLayout>
