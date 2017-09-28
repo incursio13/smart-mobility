@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Menu"
+            android:text="Menu (Driver)"
             android:textColor="@color/colorPrimaryText"
             android:textSize="20sp"
             android:textStyle="bold" />

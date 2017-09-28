@@ -366,7 +366,8 @@ public class MapsActivity extends AppCompatActivity implements
                         if (polyline != null) {
                             polyline.remove();
                         }
-                        polyline = mGoogleMap.addPolyline(map_poli[index]);
+                        if (map_poli[index]!=null)
+                            polyline = mGoogleMap.addPolyline(map_poli[index]);
                         break;
                     }
                 }
@@ -655,7 +656,7 @@ public class MapsActivity extends AppCompatActivity implements
         menu.findItem(R.id.tutorial).setIcon(
                 new IconicsDrawable(this)
                         .icon(GoogleMaterial.Icon.gmd_info)
-                        .color(Color.BLACK)
+                        .color(Color.WHITE)
                         .actionBar()
         );
         return super.onCreateOptionsMenu(menu);
@@ -682,5 +683,24 @@ public class MapsActivity extends AppCompatActivity implements
             }
         }
         return index;
+    }
+
+    public void onBackPressed() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+                Intent intent = new Intent(MapsActivity.this, MenuActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 2000);
+
     }
 }

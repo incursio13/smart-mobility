@@ -221,14 +221,16 @@ public class LynListActivity extends AppCompatActivity implements
             }
 
             @Override
-            public View getInfoContents(Marker marker) {
+            public View getInfoContents(final Marker marker) {
                 View v = getLayoutInflater().inflate(R.layout.infolyn, null);
                 nama = (TextView) v.findViewById(R.id.nama);
                 jarak = (TextView) v.findViewById(R.id.jarak);
                 full = (TextView) v.findViewById(R.id.full);
                 nama.setText(marker.getTitle());
                 if (marker.getTitle().contentEquals(halte.getName())) {
-                    jarak.setVisibility(View.GONE);
+
+                    jarak.setText(halte.getWaiting()+" penunggu");
+                    //jarak.setVisibility(View.GONE);
                     full.setVisibility(View.GONE);
                     cardlyn.setVisibility(View.GONE);
                     if (polyline != null) {
@@ -260,27 +262,81 @@ public class LynListActivity extends AppCompatActivity implements
                                     .actionBar(),
                             null, null, null);
                     cardlyn.setVisibility(View.VISIBLE);
-                    for (Lyn h : lyns) {
-                        if (h.getPlate().contentEquals(marker.getTitle())) {
-                            int index = lyns.indexOf(h);
-                            lyn = h;
-                            if (h.isFull()) {
-                                full.setText("Penuh");
-                                tvLynStatus.setText("Penuh");
-                            } else {
-                                full.setText("Tersedia");
-                                tvLynStatus.setText("Tersedia");
+                    if (lyns.size()>0) {
+                        for (Lyn h : lyns) {
+                            if (h.getPlate().contentEquals(marker.getTitle())) {
+
+                                final int index = lyns.indexOf(h);
+                                lyn = h;
+                                if (map_poli[index]==null){
+                                    final LatLng halteloc = new LatLng(halte.getLat(), halte.getLng());
+                                    LatLng lynloc = new LatLng(lyn.getLat(), lyn.getLng());
+                                    GoogleDirection.withServerKey(getResources().getString(R.string.google_maps_key))
+                                            .from(halteloc)
+                                            .to(lynloc)
+                                            .unit(Unit.METRIC)
+                                            .transitMode(TransportMode.DRIVING)
+                                            .execute(new DirectionCallback() {
+                                                @Override
+                                                public void onDirectionSuccess(Direction direction, String rawBody) {
+                                                    if (direction.isOK()) {
+                                                        ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
+                                                        map_duration[index] = direction.getRouteList().get(0).getLegList().get(0).getDuration().getText();
+                                                        map_distance[index] = direction.getRouteList().get(0).getLegList().get(0).getDistance().getText();
+                                                        map_poli[index] = DirectionConverter.createPolyline(LynListActivity.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null));
+
+                                                        if (lyn.isFull()) {
+                                                            full.setText("Penuh");
+                                                            tvLynStatus.setText("Penuh");
+                                                        } else {
+                                                            full.setText("Tersedia");
+                                                            tvLynStatus.setText("Tersedia");
+                                                        }
+                                                        tvLynCode.setText(lyn.getPlate());
+                                                        tvLynDestination.setText(map_distance[index]);
+                                                        jarak.setText(map_distance[index]);
+                                                        tvLynEta.setText(map_duration[index]);
+                                                        tvLynFee.setText("Rp " + lyn.getPrice());
+                                                        if (polyline != null) {
+                                                            polyline.remove();
+                                                        }
+
+                                                        if (map_poli[index]!=null)
+                                                            polyline = mGoogleMap.addPolyline(map_poli[index]);
+                                                    } else {
+                                                        Log.d("mapse", rawBody);
+                                                        // Do something
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onDirectionFailure(Throwable t) {
+                                                    Log.d("mapse", t.toString());
+                                                }
+                                            });
+                                }
+                                else{
+                                    if (h.isFull()) {
+                                        full.setText("Penuh");
+                                        tvLynStatus.setText("Penuh");
+                                    } else {
+                                        full.setText("Tersedia");
+                                        tvLynStatus.setText("Tersedia");
+                                    }
+                                    tvLynCode.setText(h.getPlate());
+                                    tvLynDestination.setText(map_distance[index]);
+                                    jarak.setText(map_distance[index]);
+                                    tvLynEta.setText(map_duration[index]);
+                                    tvLynFee.setText("Rp " + h.getPrice());
+                                    if (polyline != null) {
+                                        polyline.remove();
+                                    }
+
+                                    if (map_poli[index]!=null)
+                                        polyline = mGoogleMap.addPolyline(map_poli[index]);
+                                }
+                                break;
                             }
-                            tvLynCode.setText(h.getPlate());
-                            tvLynDestination.setText(map_distance[index]);
-                            jarak.setText(map_distance[index]);
-                            tvLynEta.setText(map_duration[index]);
-                            tvLynFee.setText("Rp " + h.getPrice());
-                            if (polyline != null) {
-                                polyline.remove();
-                            }
-                            polyline = mGoogleMap.addPolyline(map_poli[index]);
-                            break;
                         }
                     }
                 }
@@ -517,4 +573,10 @@ public class LynListActivity extends AppCompatActivity implements
         final AlertDialog alert = builder.create();
         alert.show();
     }
+
+    public void onBackPressed() {
+
+
+    }
+
 }

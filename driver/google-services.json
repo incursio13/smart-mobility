@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1014025197259-tjs8v13q9qm31t7pjvl043cu3j3hto6o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.its.smartmobility",
+            "certificate_hash": "d759170f6e236e36e3c4cfb63552009bcd284df1"
+          }
+        },
+        {
           "client_id": "1014025197259-3oflqrshiggvu387a5v0b58i6pmkr7mq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -146,6 +154,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1014025197259-d8p9u851fuf4mioc0ju1q57pcb8jc9t4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.its.driver",
+            "certificate_hash": "d759170f6e236e36e3c4cfb63552009bcd284df1"
+          }
+        },
         {
           "client_id": "1014025197259-igs53jn2pbb3e7f3uf6l5nv531mo2f2f.apps.googleusercontent.com",
           "client_type": 1,

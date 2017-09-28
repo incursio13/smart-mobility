@@ -13,6 +13,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -69,6 +70,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -92,6 +94,7 @@ public class Navigation extends AppCompatActivity implements
     GoogleApiClient mGoogleApiClient;
     Location myloc;
     Location prevLoc;
+    LatLng destinationOnClick;
     Marker mymarker, destination;
     boolean locsetted = false;
     Polyline polyline1,polyline2, polyline3;
@@ -102,6 +105,8 @@ public class Navigation extends AppCompatActivity implements
     ImageButton myCurrentLoc;
     @BindView(R.id.btnFindPath)
     Button btnFindPath;
+    @BindView(R.id.toMaps)
+    ImageButton toMaps;
     @BindView(R.id.tvDistance)
     TextView tvDistance;
     @BindView(R.id.tvDuration)
@@ -200,6 +205,8 @@ public class Navigation extends AppCompatActivity implements
         mGoogleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener(){
             @Override
             public void onMapLongClick(LatLng latLng){
+                au.setText("");
+                destinationOnClick = latLng;
                 Log.d("halte", "onMapLongClick: ");
                 if(destination!=null){
                     destination.remove();
@@ -477,7 +484,7 @@ public class Navigation extends AppCompatActivity implements
         alert.show();
     }
 
-    @OnClick({R.id.myCurrentLoc, R.id.btnFindPath})
+    @OnClick({R.id.myCurrentLoc, R.id.btnFindPath, R.id.toMaps})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.myCurrentLoc:
@@ -487,88 +494,119 @@ public class Navigation extends AppCompatActivity implements
                 CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 10);
                 mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(myloc.getLatitude(), myloc.getLongitude()),15.0f));
                 break;
-            case R.id.btnFindPath:
-                String a = au.getText().toString();
-                List<Address> addressList = null;
-                if (a!=null || !a.equals("")){
-                    Geocoder geocoder = new Geocoder(this);
+            case R.id.toMaps:
+                String a2 = au.getText().toString();
+                List<Address> addressList2 = null;
+                if (a2!=null && !a2.equals("")) {
+                    Geocoder geocoder2 = new Geocoder(this);
                     try {
-                        addressList = geocoder.getFromLocationName(a,1);
+                        addressList2 = geocoder2.getFromLocationName(a2, 3);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    Log.d("halte", "onViewClicked: "+latLng);
-
-                    if(destination!=null){
-                        destination.remove();
+                    if (addressList2.size() > 0) {
+                        Address address = addressList2.get(0);
+                        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + address.getLatitude() + ", " + address.getLongitude() + "");
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(mapIntent);
+                        }
                     }
-                    markerOptions = new MarkerOptions();
-                    markerOptions.position(latLng);
-                    destination=mGoogleMap.addMarker(markerOptions.flat(true));
-                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15.0f));
+                }
+                else if (destinationOnClick!=null){
+                    Uri gmmIntentUri = Uri.parse("google.navigation:q=" + destinationOnClick.latitude + ", " + destinationOnClick.longitude + "");
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(mapIntent);
+                    }
+                }
+                break;
+            case R.id.btnFindPath:
+                String a = au.getText().toString();
+                List<Address> addressList = null;
+                if (a!=null && !a.equals("")){
+                    Log.d("halte", "onViewClicked: ");
+                    Geocoder geocoder = new Geocoder(this);
+                    try {
+                        addressList = geocoder.getFromLocationName(a,3);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if (addressList.size()>0) {
+                        Address address = addressList.get(0);
 
-                    GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))
-                            .from(new LatLng(myloc.getLatitude(), myloc.getLongitude()))
-                            .to(latLng)
-                            .unit(Unit.METRIC)
-                            .transitMode(TransportMode.DRIVING)
-                            .alternativeRoute(true)
-                            .execute(new DirectionCallback() {
-                                @Override
-                                public void onDirectionSuccess(Direction direction, String rawBody) {
-                                    if (direction.isOK()) {
-                                        int routeSize= direction.getRouteList().size();
-                                        ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
-                                        direct1=direction.getRouteList().get(0).getLegList().get(0).getDistance().getText();
-                                        time1=direction.getRouteList().get(0).getLegList().get(0).getDuration().getText();
-                                        tvDistance.setText(direct1);
-                                        tvDuration.setText(time1);
+                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+                        if (destination != null) {
+                            destination.remove();
+                        }
+                        markerOptions = new MarkerOptions();
+                        markerOptions.position(latLng);
+                        destination = mGoogleMap.addMarker(markerOptions.flat(true));
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
+
+                        GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))
+                                .from(new LatLng(myloc.getLatitude(), myloc.getLongitude()))
+                                .to(latLng)
+                                .unit(Unit.METRIC)
+                                .transitMode(TransportMode.DRIVING)
+                                .alternativeRoute(true)
+                                .execute(new DirectionCallback() {
+                                    @Override
+                                    public void onDirectionSuccess(Direction direction, String rawBody) {
+                                        if (direction.isOK()) {
+                                            int routeSize = direction.getRouteList().size();
+                                            ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
+                                            direct1 = direction.getRouteList().get(0).getLegList().get(0).getDistance().getText();
+                                            time1 = direction.getRouteList().get(0).getLegList().get(0).getDuration().getText();
+                                            tvDistance.setText(direct1);
+                                            tvDuration.setText(time1);
 
 //                            waktuHalte.setText(direction.getRouteList().get(0).getLegList().get(0).getDuration().getText());
-                                        if (polyline1 != null) {
-                                            polyline1.remove();
-                                        }
-                                        if (polyline2 != null) {
-                                            polyline2.remove();
-                                        }
-                                        if (polyline3 != null) {
-                                            polyline3.remove();
-                                        }
-                                        polyline1 = mGoogleMap.addPolyline(DirectionConverter.createPolyline(Navigation.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null)));
-                                        polyline1.setClickable(true);
-                                        polyline1.setTag("line1");
-
-
-                                        if (routeSize>1) {
-                                            ArrayList<LatLng> directionPositionList1 = direction.getRouteList().get(1).getLegList().get(0).getDirectionPoint();
-                                            direct2=direction.getRouteList().get(1).getLegList().get(0).getDistance().getText();
-                                            time2=direction.getRouteList().get(1).getLegList().get(0).getDuration().getText();
-                                            polyline2 = mGoogleMap.addPolyline(DirectionConverter.createPolyline(Navigation.this, directionPositionList1, 5, ResourcesCompat.getColor(getResources(), R.color.colorPrimaryYellowLight, null)));
-                                            polyline2.setClickable(true);
-                                            polyline2.setTag("line2");
-
-                                            if (routeSize>2){
-                                                ArrayList<LatLng> directionPositionList2 = direction.getRouteList().get(2).getLegList().get(0).getDirectionPoint();
-                                                direct3=direction.getRouteList().get(2).getLegList().get(0).getDistance().getText();
-                                                time3=direction.getRouteList().get(2).getLegList().get(0).getDuration().getText();
-                                                polyline3 = mGoogleMap.addPolyline(DirectionConverter.createPolyline(Navigation.this, directionPositionList2, 5, ResourcesCompat.getColor(getResources(), R.color.colorPrimaryGreyLight, null)));
-                                                polyline3.setClickable(true);
-                                                polyline3.setTag("line3");
+                                            if (polyline1 != null) {
+                                                polyline1.remove();
                                             }
-                                        }
-                                    } else {
-                                        Log.d("mapse", rawBody);
-                                    }
-                                }
+                                            if (polyline2 != null) {
+                                                polyline2.remove();
+                                            }
+                                            if (polyline3 != null) {
+                                                polyline3.remove();
+                                            }
+                                            polyline1 = mGoogleMap.addPolyline(DirectionConverter.createPolyline(Navigation.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null)));
+                                            polyline1.setClickable(true);
+                                            polyline1.setTag("line1");
 
-                                @Override
-                                public void onDirectionFailure(Throwable t) {
-                                    Log.d("mapse", t.toString());
-                                }
-                            });
+
+                                            if (routeSize > 1) {
+                                                ArrayList<LatLng> directionPositionList1 = direction.getRouteList().get(1).getLegList().get(0).getDirectionPoint();
+                                                direct2 = direction.getRouteList().get(1).getLegList().get(0).getDistance().getText();
+                                                time2 = direction.getRouteList().get(1).getLegList().get(0).getDuration().getText();
+                                                polyline2 = mGoogleMap.addPolyline(DirectionConverter.createPolyline(Navigation.this, directionPositionList1, 5, ResourcesCompat.getColor(getResources(), R.color.colorPrimaryYellowLight, null)));
+                                                polyline2.setClickable(true);
+                                                polyline2.setTag("line2");
+
+                                                if (routeSize > 2) {
+                                                    ArrayList<LatLng> directionPositionList2 = direction.getRouteList().get(2).getLegList().get(0).getDirectionPoint();
+                                                    direct3 = direction.getRouteList().get(2).getLegList().get(0).getDistance().getText();
+                                                    time3 = direction.getRouteList().get(2).getLegList().get(0).getDuration().getText();
+                                                    polyline3 = mGoogleMap.addPolyline(DirectionConverter.createPolyline(Navigation.this, directionPositionList2, 5, ResourcesCompat.getColor(getResources(), R.color.colorPrimaryGreyLight, null)));
+                                                    polyline3.setClickable(true);
+                                                    polyline3.setTag("line3");
+                                                }
+                                            }
+                                        } else {
+                                            Log.d("mapse", rawBody);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onDirectionFailure(Throwable t) {
+                                        Log.d("mapse", t.toString());
+                                    }
+                                });
+                    }
                 }
                 break;
         }

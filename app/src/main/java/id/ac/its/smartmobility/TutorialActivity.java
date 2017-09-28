@@ -19,8 +19,8 @@ public class TutorialActivity extends AppIntro {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int bgColor =  Color.parseColor("#ffdc5a");
-        int blackColor = Color.parseColor("#212121");
+        int bgColor =  Color.parseColor("#4e60c4");
+        int blackColor = Color.parseColor("#e5e5e5");
         int black2Color = Color.parseColor("#424242");
 
         addSlide(AppIntroFragment.newInstance("Pilih halte", "Silakan memilih salah satu halte yang paling dekat dengan anda, lalu tekan logo halte tersebut", R.drawable.tutor_sub_1, bgColor, blackColor, blackColor));

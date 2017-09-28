@@ -60,6 +60,7 @@
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:id="@+id/next_regis"
+        android:textColor="@color/colorPrimaryText"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/harga"

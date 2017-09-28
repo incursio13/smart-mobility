@@ -69,14 +69,14 @@ public class Splashscreen extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
                     if (!snapshot.hasChild("halte")) {
-                        halte = new Halte("Halte 1", 0, -7.279890, 112.784973);
-                        databaseHalte.child(halte.getName()).setValue(halte);
-                        halte = new Halte("Halte 2", 0, -7.279337, 112.789393);
-                        databaseHalte.child(halte.getName()).setValue(halte);
-                        halte = new Halte("Halte 3", 0, -7.278337, 112.789393);
-                        databaseHalte.child(halte.getName()).setValue(halte);
-                        halte = new Halte("Halte 4", 0, -7.277337, 112.789393);
-                        databaseHalte.child(halte.getName()).setValue(halte);
+//                        halte = new Halte("Halte 1", 0, -7.279890, 112.784973);
+//                        databaseHalte.child(halte.getName()).setValue(halte);
+//                        halte = new Halte("Halte 2", 0, -7.279337, 112.789393);
+//                        databaseHalte.child(halte.getName()).setValue(halte);
+//                        halte = new Halte("Halte 3", 0, -7.278337, 112.789393);
+//                        databaseHalte.child(halte.getName()).setValue(halte);
+//                        halte = new Halte("Halte 4", 0, -7.277337, 112.789393);
+//                        databaseHalte.child(halte.getName()).setValue(halte);
                     }
                 }
 
