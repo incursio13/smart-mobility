@@ -153,5 +153,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <ImageButton
+        android:id="@+id/toMaps"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:background="@drawable/maps"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/myCurrentLoc"
+        android:layout_alignStart="@+id/myCurrentLoc"
+        android:layout_marginBottom="11dp" />
 
 </RelativeLayout>
