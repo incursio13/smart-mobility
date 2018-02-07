@@ -229,7 +229,7 @@ public class LynListActivity extends AppCompatActivity implements
                 nama.setText(marker.getTitle());
                 if (marker.getTitle().contentEquals(halte.getName())) {
 
-                    jarak.setText(halte.getWaiting()+" penunggu");
+                    jarak.setText((halte.getWaiting()+1)+" penunggu");
                     //jarak.setVisibility(View.GONE);
                     full.setVisibility(View.GONE);
                     cardlyn.setVisibility(View.GONE);
