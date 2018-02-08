@@ -6,6 +6,7 @@ import org.parceler.Parcel;
 public class Lyn {
 
     private String plate;
+    private String route;
     private boolean full, status;
     private double lat;
     private double lng;
@@ -14,13 +15,14 @@ public class Lyn {
     public Lyn() {
     }
 
-    public Lyn(String plate, int price, boolean full, boolean status, double lat, double lng) {
+    public Lyn(String plate, int price, boolean full, boolean status, double lat, double lng, String Route) {
         this.plate = plate;
         this.price = price;
         this.full = full;
         this.status = status;
         this.lat = lat;
         this.lng = lng;
+        this.route = Route;
     }
 
     public int getPrice() {
@@ -69,5 +71,13 @@ public class Lyn {
 
     public boolean isStatus() {
         return status;
+    }
+
+    public String getRoute(){
+        return this.route;
+    }
+
+    public void setRoute(String route){
+        this.route = route;
     }
 }

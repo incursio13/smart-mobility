@@ -56,6 +56,19 @@
         />
 
 
+    <EditText
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/harga"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/route"
+        android:hint="Rute"
+        />
+
     <Button
         android:gravity="center"
         android:layout_centerHorizontal="true"
@@ -63,7 +76,7 @@
         android:textColor="@color/colorPrimaryText"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/harga"
+        android:layout_below="@+id/route"
         android:layout_margin="10dp"
         android:background="@color/colorPrimary"
         android:text="Lanjut"

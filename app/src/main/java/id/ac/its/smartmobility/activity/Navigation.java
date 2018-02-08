@@ -217,7 +217,7 @@ public class Navigation extends AppCompatActivity implements
                 if (polyline1 != null) {
                     polyline1.remove();
                 }
-                GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))
+                GoogleDirection.withServerKey(getResources().getString(R.string.google_maps_key))
                         .from(new LatLng(myloc.getLatitude(), myloc.getLongitude()))
                         .to(latLng)
                         .unit(Unit.METRIC)
@@ -547,7 +547,7 @@ public class Navigation extends AppCompatActivity implements
                         destination = mGoogleMap.addMarker(markerOptions.flat(true));
                         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
 
-                        GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))
+                        GoogleDirection.withServerKey(getResources().getString(R.string.google_maps_key))
                                 .from(new LatLng(myloc.getLatitude(), myloc.getLongitude()))
                                 .to(latLng)
                                 .unit(Unit.METRIC)

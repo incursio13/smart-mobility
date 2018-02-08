@@ -556,7 +556,7 @@ public class MapsActivity extends AppCompatActivity implements
                         Log.d("halte", "onDataChange: "+halte.getName());
                         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_halte));
                         mGoogleMap.addMarker(markerOptions);
-                        GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))
+                        GoogleDirection.withServerKey(getResources().getString(R.string.google_maps_key))
                                 .from(new LatLng(myloc.getLatitude(), myloc.getLongitude()))
                                 .to(halteloc)
                                 .unit(Unit.METRIC)

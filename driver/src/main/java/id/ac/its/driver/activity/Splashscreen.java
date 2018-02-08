@@ -52,9 +52,9 @@ public class Splashscreen extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
                     if (!snapshot.hasChild("lyn")) {
-                        lyn = new Lyn("L 12 A", 5000, true, false, -7.275622, 112.793449);
+                        lyn = new Lyn("L 12 A", 5000, true, false, -7.275622, 112.793449, "BJ");
                         databaseLyn.child(lyn.getPlate()).setValue(lyn);
-                        lyn = new Lyn("L 23 B", 6000, true, true, -7.280443, 112.781068);
+                        lyn = new Lyn("L 23 B", 6000, true, true, -7.280443, 112.781068, "BJ");
                         databaseLyn.child(lyn.getPlate()).setValue(lyn);
                     }
                 }

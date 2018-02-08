@@ -33,6 +33,8 @@ public class RegistrationActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.plat_nomor)
     EditText platNomor;
+    @BindView(R.id.route)
+    EditText route;
     @BindView(R.id.harga)
     EditText harga;
     @BindView(R.id.next_regis)
@@ -67,6 +69,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 ifedit();
             }
         };
+        route.addTextChangedListener(watcher);
         platNomor.addTextChangedListener(watcher);
         harga.addTextChangedListener(watcher);
     }
@@ -81,7 +84,8 @@ public class RegistrationActivity extends AppCompatActivity {
     public void onViewClicked() {
         String a = platNomor.getText().toString();
         int b = Integer.parseInt(harga.getText().toString());
-        lyn = new Lyn(a, b, false, true, -7.275622, 112.793449);
+        String c = route.getText().toString();
+        lyn = new Lyn(a, b, false, true, -7.275622, 112.793449, c);
         databaseLyn.child(lyn.getPlate()).setValue(lyn);
         Prefs.putString("plat", a);
         Prefs.putInt("harga", b);

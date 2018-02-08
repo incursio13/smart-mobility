@@ -323,7 +323,7 @@ public class LynListActivity extends AppCompatActivity implements
                                         full.setText("Tersedia");
                                         tvLynStatus.setText("Tersedia");
                                     }
-                                    tvLynCode.setText(h.getPlate());
+                                    tvLynCode.setText(h.getPlate()+"\n"+h.getRoute());
                                     tvLynDestination.setText(map_distance[index]);
                                     jarak.setText(map_distance[index]);
                                     tvLynEta.setText(map_duration[index]);
