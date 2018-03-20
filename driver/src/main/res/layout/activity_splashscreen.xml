@@ -5,7 +5,7 @@
     android:id="@+id/activity_splashscreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="id.ac.its.driver.activity.Splashscreen">
+    tools:context="id.ac.its.intravtasdriver.activity.Splashscreen">
 
     <LinearLayout
         android:layout_centerHorizontal="true"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="id.ac.its.smartmobility">
+    package="id.ac.its.intravtasuser">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,19 +30,19 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".activity.Splashscreen">
+            android:name="id.ac.its.intravtasuser.activity.Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MenuActivity" />
-        <activity android:name=".activity.MapsActivity" />
-        <activity android:name=".activity.LynListActivity" />
-        <activity android:name=".tutorial_new" />
-        <activity android:name=".TutorialActivity" />
-        <activity android:name=".activity.Navigation" />
+        <activity android:name="id.ac.its.intravtasuser.activity.MenuActivity" />
+        <activity android:name="id.ac.its.intravtasuser.activity.MapsActivity" />
+        <activity android:name="id.ac.its.intravtasuser.activity.LynListActivity" />
+        <activity android:name="id.ac.its.intravtasuser.tutorial_new" />
+        <activity android:name="id.ac.its.intravtasuser.TutorialActivity" />
+        <activity android:name="id.ac.its.intravtasuser.activity.Navigation" />
     </application>
 
 </manifest>

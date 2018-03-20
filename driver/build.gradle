@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.0"
 
     defaultConfig {
-        applicationId "id.ac.its.driver"
+        applicationId "id.ac.its.intravtasdriver"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="id.ac.its.smartmobility.TutorialActivity">
+    tools:context="id.ac.its.intravtasuser.TutorialActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
